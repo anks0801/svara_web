@@ -1,0 +1,199 @@
+<svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky gradient with realistic depth -->
+    <linearGradient id="realisticSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a52;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#2e5a8c;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#4a8fd9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87ceeb;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadows and depth -->
+    <filter id="realisticShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="3" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Engine glow -->
+    <radialGradient id="engineGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#ff4500;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#ff4500;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Metal finish -->
+    <linearGradient id="metalFinish" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d3d3d3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a9a9a9;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Window reflection -->
+    <linearGradient id="windowReflection" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f4ff;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#5ba3d0;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#2c5aa0;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky background -->
+  <rect width="1920" height="1080" fill="url(#realisticSky)"/>
+  
+  <!-- Atmospheric haze layers -->
+  <rect width="1920" height="1080" fill="#ffffff" opacity="0.05"/>
+  
+  <!-- Realistic clouds with depth -->
+  <g opacity="0.8">
+    <!-- Far clouds (lighter, higher) -->
+    <path d="M 200 150 Q 250 130 300 150 Q 350 140 400 155 Q 450 145 500 160 L 500 180 Q 450 170 400 175 Q 350 165 300 170 Q 250 155 200 170 Z" fill="white" opacity="0.4"/>
+    
+    <!-- Mid-range clouds -->
+    <ellipse cx="1600" cy="200" rx="180" ry="60" fill="white" opacity="0.6"/>
+    <ellipse cx="1700" cy="220" rx="150" ry="50" fill="white" opacity="0.5"/>
+    <ellipse cx="1500" cy="225" rx="140" ry="45" fill="white" opacity="0.55"/>
+    
+    <!-- Lower clouds -->
+    <path d="M 100 300 Q 150 280 200 300 Q 250 290 300 310 L 300 350 Q 250 330 200 340 Q 150 325 100 340 Z" fill="white" opacity="0.7"/>
+  </g>
+  
+  <!-- MAIN AIRCRAFT - Boeing 777 style -->
+  <g filter="url(#realisticShadow)">
+    <!-- Fuselage body -->
+    <ellipse cx="960" cy="520" rx="280" ry="65" fill="url(#metalFinish)" stroke="#696969" stroke-width="2"/>
+    
+    <!-- Cabin/cockpit section -->
+    <ellipse cx="1140" cy="505" rx="100" ry="55" fill="#e8e8e8" stroke="#696969" stroke-width="2"/>
+    
+    <!-- Windshield (cockpit windows) -->
+    <ellipse cx="1160" cy="490" rx="70" ry="35" fill="url(#windowReflection)" stroke="#1a1a1a" stroke-width="2"/>
+    
+    <!-- Cockpit detail -->
+    <ellipse cx="1170" cy="495" rx="50" ry="25" fill="#4a90e2" opacity="0.7"/>
+    
+    <!-- Main deck windows (row 1) -->
+    <g stroke="#1a1a1a" stroke-width="1.5">
+      <circle cx="1060" cy="510" r="14" fill="url(#windowReflection)"/>
+      <circle cx="1010" cy="515" r="12" fill="url(#windowReflection)"/>
+      <circle cx="960" cy="518" r="11" fill="url(#windowReflection)"/>
+      <circle cx="910" cy="517" r="12" fill="url(#windowReflection)"/>
+      <circle cx="860" cy="514" r="12" fill="url(#windowReflection)"/>
+      <circle cx="810" cy="510" r="13" fill="url(#windowReflection)"/>
+    </g>
+    
+    <!-- Secondary deck windows -->
+    <g stroke="#1a1a1a" stroke-width="1">
+      <circle cx="1035" cy="495" r="10" fill="#5ba3d0" opacity="0.8"/>
+      <circle cx="990" cy="498" r="9" fill="#5ba3d0" opacity="0.8"/>
+      <circle cx="945" cy="500" r="9" fill="#5ba3d0" opacity="0.8"/>
+      <circle cx="900" cy="499" r="9" fill="#5ba3d0" opacity="0.8"/>
+      <circle cx="855" cy="496" r="10" fill="#5ba3d0" opacity="0.8"/>
+    </g>
+    
+    <!-- MAIN WINGS -->
+    <path d="M 960 520 L 500 480 L 480 520 L 960 540 Z" fill="url(#metalFinish)" stroke="#696969" stroke-width="2.5"/>
+    <path d="M 960 520 L 1420 480 L 1440 520 L 960 540 Z" fill="url(#metalFinish)" stroke="#696969" stroke-width="2.5"/>
+    
+    <!-- Wing engines under wings -->
+    <!-- Left Engine Pod -->
+    <g>
+      <!-- Engine nacelle -->
+      <ellipse cx="700" cy="545" rx="70" ry="85" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="2"/>
+      <ellipse cx="700" cy="540" rx="68" ry="40" fill="#1a1a1a"/>
+      
+      <!-- Engine inlet -->
+      <circle cx="700" cy="530" r="50" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="700" cy="530" r="45" fill="#1a1a1a"/>
+      
+      <!-- Compressor blades -->
+      <g fill="#2a2a2a" opacity="0.8">
+        <circle cx="700" cy="530" r="40"/>
+        <line x1="700" y1="495" x2="700" y2="565" stroke="#1a1a1a" stroke-width="3" opacity="0.6"/>
+        <line x1="665" y1="530" x2="735" y2="530" stroke="#1a1a1a" stroke-width="3" opacity="0.6"/>
+        <line x1="680" y1="510" x2="720" y2="550" stroke="#1a1a1a" stroke-width="2.5" opacity="0.5"/>
+        <line x1="720" y1="510" x2="680" y2="550" stroke="#1a1a1a" stroke-width="2.5" opacity="0.5"/>
+      </g>
+      
+      <!-- Fan glow -->
+      <circle cx="700" cy="530" r="42" fill="url(#engineGlow)" opacity="0.6"/>
+      
+      <!-- Engine exhaust -->
+      <ellipse cx="700" cy="630" rx="55" ry="25" fill="#444444" stroke="#1a1a1a" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Right Engine Pod -->
+    <g>
+      <!-- Engine nacelle -->
+      <ellipse cx="1220" cy="545" rx="70" ry="85" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="2"/>
+      <ellipse cx="1220" cy="540" rx="68" ry="40" fill="#1a1a1a"/>
+      
+      <!-- Engine inlet -->
+      <circle cx="1220" cy="530" r="50" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="1220" cy="530" r="45" fill="#1a1a1a"/>
+      
+      <!-- Compressor blades -->
+      <g fill="#2a2a2a" opacity="0.8">
+        <circle cx="1220" cy="530" r="40"/>
+        <line x1="1220" y1="495" x2="1220" y2="565" stroke="#1a1a1a" stroke-width="3" opacity="0.6"/>
+        <line x1="1185" y1="530" x2="1255" y2="530" stroke="#1a1a1a" stroke-width="3" opacity="0.6"/>
+        <line x1="1200" y1="510" x2="1240" y2="550" stroke="#1a1a1a" stroke-width="2.5" opacity="0.5"/>
+        <line x1="1240" y1="510" x2="1200" y2="550" stroke="#1a1a1a" stroke-width="2.5" opacity="0.5"/>
+      </g>
+      
+      <!-- Fan glow -->
+      <circle cx="1220" cy="530" r="42" fill="url(#engineGlow)" opacity="0.6"/>
+      
+      <!-- Engine exhaust -->
+      <ellipse cx="1220" cy="630" rx="55" ry="25" fill="#444444" stroke="#1a1a1a" stroke-width="1.5"/>
+    </g>
+    
+    <!-- WINGLETS -->
+    <path d="M 480 520 L 450 480 L 465 530 Z" fill="#c0c0c0" stroke="#696969" stroke-width="2"/>
+    <path d="M 1440 520 L 1470 480 L 1455 530 Z" fill="#c0c0c0" stroke="#696969" stroke-width="2"/>
+    
+    <!-- TAIL SECTION -->
+    <!-- Horizontal stabilizer -->
+    <path d="M 680 520 L 620 500 L 630 530 Z" fill="url(#metalFinish)" stroke="#696969" stroke-width="2"/>
+    
+    <!-- Vertical stabilizer (tail fin) -->
+    <path d="M 670 520 L 650 380 L 685 520 Z" fill="#e8e8e8" stroke="#696969" stroke-width="2"/>
+    <path d="M 675 500 L 665 420 L 680 500 Z" fill="#d3d3d3" opacity="0.7"/>
+    
+    <!-- Landing gear -->
+    <g stroke="#2a2a2a" stroke-width="8" fill="none" stroke-linecap="round">
+      <!-- Front gear -->
+      <line x1="1000" y1="585" x2="1000" y2="680"/>
+      <!-- Main left gear -->
+      <line x1="850" y1="585" x2="850" y2="690"/>
+      <!-- Main right gear -->
+      <line x1="1080" y1="585" x2="1080" y2="690"/>
+    </g>
+    
+    <!-- Gear wheels -->
+    <g fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2">
+      <circle cx="1000" cy="695" r="22"/>
+      <circle cx="1000" cy="695" r="16" fill="#333333"/>
+      
+      <circle cx="850" cy="705" r="24"/>
+      <circle cx="850" cy="705" r="18" fill="#333333"/>
+      
+      <circle cx="1080" cy="705" r="24"/>
+      <circle cx="1080" cy="705" r="18" fill="#333333"/>
+    </g>
+    
+    <!-- Airplane body accent stripe -->
+    <path d="M 1120 515 Q 960 520 700 525" stroke="#ff6b35" opacity="0.7" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Ground/Shadow effect -->
+  <ellipse cx="960" cy="740" rx="400" ry="60" fill="#000000" opacity="0.15"/>
+  
+  <!-- Subtle atmospheric perspective -->
+  <rect width="1920" height="300" y="780" fill="#000000" opacity="0.08"/>
+</svg>
