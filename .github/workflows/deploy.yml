@@ -27,7 +27,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build
+    - name: Build (prod)
+      env:
+        NEXT_PUBLIC_ENV: prod
       run: npm run build
 
     - name: Setup Pages
@@ -63,17 +65,14 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Build
+      - name: Build (dev)
+        env:
+          NEXT_PUBLIC_ENV: dev
         run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Deploy dev to gh-pages subfolder
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          static_site_generator: next
-      - name: Upload artifact (staging)
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-          base_path: /staging
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4   
+          branch: gh-pages
+          folder: out
+          target-folder: svara-dev
+          clean: true

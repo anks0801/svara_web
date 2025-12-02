@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-const repoName = '/svara'; 
+const isProd = process.env.NEXT_PUBLIC_ENV === 'prod';
+const repoName = isProd ? '/svara' : '/svara-dev'; 
 const nextConfig = {
   output: 'export', // for static export
   reactStrictMode: true,
@@ -10,7 +11,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   basePath: repoName,
-  assetPrefix: `${repoName}/`,
+  assetPrefix: '',
   env: {
     NEXT_PUBLIC_BASE_PATH: repoName,
   },
