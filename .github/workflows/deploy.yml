@@ -15,7 +15,7 @@ jobs:
         node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -35,18 +35,20 @@ jobs:
         name: build-artifacts
         path: out/
 
-    - name: Deploy to Production (main)
+    - name: Deploy Production to gh-pages (main)
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./out
         destination_dir: svara
+        force_orphan: true
 
-    - name: Deploy to Staging (dev)
+    - name: Deploy Staging to gh-pages (dev)
       if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./out
         destination_dir: svara/staging
+        force_orphan: true
