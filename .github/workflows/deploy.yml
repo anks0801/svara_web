@@ -35,10 +35,18 @@ jobs:
         name: build-artifacts
         path: out/
 
-    - name: Deploy to GitHub Pages
+    - name: Deploy to Production (main)
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./out
-        cname: svara.com
+        destination_dir: svara
+
+    - name: Deploy to Staging (dev)
+      if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+        destination_dir: svara/staging
