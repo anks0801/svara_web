@@ -45,6 +45,5 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+
   # Dev deployments disabled; main is the only deployment target
-          target-folder: svara-dev
-          clean: true
