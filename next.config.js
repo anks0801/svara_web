@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NEXT_PUBLIC_ENV === 'prod';
 const isDevServer = process.env.NODE_ENV === 'development';
-const repoName = isDevServer ? '' : (isProd ? '/svara' : '/svara-dev');
+const repoName = isDevServer ? '' : (isProd ? '/svara_web' : '/svara_web');
 const nextConfig = {
   output: 'export', // for static export
   reactStrictMode: true,
