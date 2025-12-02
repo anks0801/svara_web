@@ -1,4 +1,7 @@
+import { useRouter } from 'next/router';
+
 export default function Hero() {
+  const { basePath } = useRouter();
   return (
     <section
       className="relative flex items-center justify-center min-h-[56vh] md:min-h-[48vh] py-16 md:py-24 text-center px-6 bg-gradient-to-b from-blue-900 to-blue-800"
@@ -7,7 +10,7 @@ export default function Hero() {
       {/* Decorative aircraft background (low contrast) */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="/airplane-with-wings-engine.jpg"
+          src={`${basePath}/airplane-with-wings-engine.jpg`}
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover opacity-8"

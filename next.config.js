@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const repoName = '/svara_web'; 
+const repoName = '/svara'; 
 const nextConfig = {
   output: 'export', // for static export
   reactStrictMode: true,
@@ -11,6 +11,9 @@ const nextConfig = {
   poweredByHeader: false,
   basePath: repoName,
   assetPrefix: `${repoName}/`,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: repoName,
+  },
 };
 
 module.exports = nextConfig;
