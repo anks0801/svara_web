@@ -7,20 +7,21 @@ on:
     branches: [ main, dev ]
 
 jobs:
-  build:
+  build-main:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 18.x
         cache: 'npm'
 
     - name: Install dependencies
@@ -29,26 +30,43 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
       with:
-        name: build-artifacts
-        path: out/
+        static_site_generator: next
 
-    - name: Deploy Production to gh-pages (main)
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v4
+    - name: Upload artifact (production)
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
-        destination_dir: svara
-        force_orphan: true
+        path: ./out
 
-    - name: Deploy Staging to gh-pages (dev)
-      if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v4
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+  build-dev:
+    if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
-        destination_dir: svara/staging
-        force_orphan: true
+        node-version: 18.x
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to staging
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: out
+        branch: gh-pages
+        target-folder: svara/staging
+        clean: false
