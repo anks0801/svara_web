@@ -54,10 +54,10 @@ export default function Home() {
   ];
 
   const capabilitiesHighlight = [
-    { number: '25+', label: 'Years of Experience' },
-    { number: '500+', label: 'Aircraft Serviced' },
-    { number: '99.8%', label: 'On-Time Delivery' },
-    { number: '100+', label: 'Certified Experts' }
+    { number: '25+', label: 'Years of Experience', icon: '📅' },
+    { number: '500+', label: 'Aircraft Serviced', icon: '✈️' },
+    { number: '99.8%', label: 'On-Time Delivery', icon: '⏱️' },
+    { number: '100+', label: 'Certified Experts', icon: '👨‍🔧' }
   ];
 
   return (
@@ -183,16 +183,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
-          {/* Animated background elements with parallax */}
-          <div 
-            className="absolute top-20 right-10 w-72 h-72 bg-blue-200/6 rounded-full blur-3xl animate-pulse"
-            style={{ transform: `translateY(${scrollY * 0.6}px)` }}
-          ></div>
-          <div 
-            className="absolute bottom-20 left-10 w-72 h-72 bg-blue-200/5 rounded-full blur-3xl animate-pulse"
-            style={{ animationDelay: '1s', transform: `translateY(${scrollY * -0.4}px)` }}
-          ></div>
+        <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-b from-gray-50 to-white">
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Section header */}
@@ -209,16 +200,19 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
               {capabilitiesHighlight.map((capability, index) => (
                 <div 
                   key={index} 
-                  className="group text-center p-8 bg-gradient-to-br from-white to-slate-50 rounded-xl border border-blue-200/30 hover:border-blue-300/50 transition duration-300 shadow-sm hover:shadow-md"
+                  className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                 >
-                  <div className="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition duration-300">
-                    {capability.number}
+                  <div className="flex flex-col items-center text-center space-y-3">
+                    <span className="text-4xl">{capability.icon}</span>
+                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                      {capability.number}
+                    </div>
+                    <div className="text-sm md:text-base text-gray-600 font-medium">{capability.label}</div>
                   </div>
-                  <div className="text-slate-700 font-semibold">{capability.label}</div>
                 </div>
               ))}
             </div>
