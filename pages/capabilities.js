@@ -84,10 +84,12 @@ export default function Capabilities() {
         {/* Key Metrics */}
         <section className="bg-gray-50 py-12 md:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {metrics.map((metric, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">{metric.number}</div>
+                  <div className="flex justify-center items-center">
+                    <span className="text-[0.6rem] sm:text-[0.7rem] md:text-xs font-bold text-blue-600 mb-2 break-all max-w-[6rem] w-full text-center">{metric.number}</span>
+                  </div>
                   <div className="text-gray-700 font-semibold">{metric.label}</div>
                 </div>
               ))}

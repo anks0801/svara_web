@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl px-4">
 
         <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
-          Welcome to Svara Aerotech Solutions
+          Svara Aerotech Solutions
         </h1>
 
         <p className="mt-4 text-lg sm:text-xl text-blue-100/90 max-w-2xl mx-auto">
