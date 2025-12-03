@@ -19,8 +19,8 @@ export default function Document() {
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         
         {/* Favicon */}
-        <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/svara-logo.svg`} />
-        <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/svara-logo.svg`} />
+        <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/svara-logo.png`} />
+        <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/svara-logo.png`} />
       </Head>
       <body>
         <Main />
