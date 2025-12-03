@@ -11,7 +11,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
-              <img src="/svara-logo.png" alt="Svara Aerotech Logo" className="h-16 w-16" />
+              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/svara-logo.svg`} alt="Svara Aerotech Logo" className="h-16 w-16" />
               {/* <span className="text-2xl font-bold text-blue-600">
                 Svara Aerotech Solutions
               </span> */}
