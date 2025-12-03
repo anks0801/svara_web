@@ -2,16 +2,13 @@ name: Build and Deploy (GitHub Pages)
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
-  build-main:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
 
@@ -27,23 +24,33 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build (prod)
+    - name: Build (main branch - production)
+      if: github.ref == 'refs/heads/main'
       env:
         NEXT_PUBLIC_ENV: prod
       run: npm run build
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
+    - name: Build (dev branch - development)
+      if: github.ref == 'refs/heads/dev'
+      env:
+        NEXT_PUBLIC_ENV: dev
+      run: npm run build
+
+    - name: Deploy to GitHub Pages (main -> root)
+      if: github.ref == 'refs/heads/main'
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        static_site_generator: next
+        folder: out
+        branch: gh-pages
+        clean: true
+        clean-exclude: |
+          dev/
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+    - name: Deploy to GitHub Pages (dev -> /dev subfolder)
+      if: github.ref == 'refs/heads/dev'
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        path: ./out
-
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-
-  # Dev deployments disabled; main is the only deployment target
+        folder: out
+        branch: gh-pages
+        target-folder: dev
+        clean: false
