@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Svara</h3>
             <p className="text-gray-400">
-              A modern, responsive, and SEO-optimized website for your needs.
+              Modern aviation engineering, maintenance, and logistics with precision and care.
             </p>
           </div>
 

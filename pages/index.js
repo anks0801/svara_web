@@ -64,11 +64,11 @@ export default function Home() {
     <>
       <NextSeo
         title="Home"
-        description="Welcome to Svara - A modern, responsive, and SEO-optimized website built with Next.js"
+        description="Svara Aerotech Solutions - Leading provider of aerospace engineering, aircraft maintenance, and aviation consulting services with cutting-edge technology and industry expertise."
         openGraph={{
           url: 'https://svara.com',
-          title: 'Svara - Welcome',
-          description: 'A modern, responsive, and SEO-optimized website',
+          title: 'Svara Aerotech Solutions - Aviation Excellence',
+          description: 'Premier aerospace engineering, aircraft maintenance, and aviation consulting services',
           type: 'website',
         }}
       />

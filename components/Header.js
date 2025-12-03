@@ -9,9 +9,12 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
-              Svara
+          <div className="flex-shrink-0 flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
+              <img src="/svara-logo.png" alt="Svara Aerotech Logo" className="h-16 w-16" />
+              {/* <span className="text-2xl font-bold text-blue-600">
+                Svara Aerotech Solutions
+              </span> */}
             </Link>
           </div>
 
